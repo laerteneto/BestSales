@@ -86,7 +86,7 @@ public class CustomerView extends JInternalFrame {
 
         mainPainel.add(scrollTabelaCliente);
 
-        /*OBS*/
+        /*BOTTOM NOTION*/
         labelObs = new JLabel("Double-click on the record to edit it !");
         labelObs.setSize(350, 15);
         labelObs.setLocation(10, 525);

@@ -185,7 +185,7 @@ public class SystemWindow extends JFrame {
                     }
                 });
 
-        /* Events of itens of menu from the bar of menu*/
+        /* Events of items of menu from the bar of menu*/
         /* CUSTOMERS */
         menuItemListCustomer.addActionListener(new ActionListener() {
 
@@ -360,8 +360,8 @@ public class SystemWindow extends JFrame {
         js.setVisible(true); // FALSE to activate login screen, TRUE to deactivate
 
         /*LOGIN- comment here to deactivate the function of login ---- warning: the system will not have protection*/
-       // Login l = new Login();
-       // l.setVisible(true);
+//        Login l = new Login();
+//        l.setVisible(true);
 
     }
 }

@@ -32,7 +32,7 @@ public class ProductView extends JInternalFrame {
     private JTable tableCustomer;
     private JButton buttomSearch, buttomRemoveRows;
     private DefaultTableModel tableModel;
-
+    
     public ProductView() {
         mainPainel = new JPanel(null);
 
@@ -90,7 +90,7 @@ public class ProductView extends JInternalFrame {
 
         mainPainel.add(scrollTabelaCliente);
 
-        /*OBS*/
+        /*Bottome Notion*/
         labelObs = new JLabel("Double-click the record to edit it !");
         labelObs.setSize(350, 15);
         labelObs.setLocation(10, 525);
@@ -111,7 +111,7 @@ public class ProductView extends JInternalFrame {
     }
 
     public void Events() {
-
+    	ProductView productView = this;
         buttomSearch.addActionListener(new ActionListener() {
 
             @Override
@@ -165,6 +165,7 @@ public class ProductView extends JInternalFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+            	
                 if (e.getClickCount() == 2) {
                     Integer id = null;
                     String name = null;
@@ -186,7 +187,7 @@ public class ProductView extends JInternalFrame {
                         }
                     }
 
-                    ProductEdit editionProduct = new ProductEdit(id, name, price_purchase, price_sale, description);
+                    ProductEdit editionProduct = new ProductEdit(productView, id, name, price_purchase, price_sale, description);
                     editionProduct.setVisible(true);
 
                 }
@@ -196,7 +197,7 @@ public class ProductView extends JInternalFrame {
     }
 
     public void search() {
-        ///// COPIA DO BOTAO DE CONSULTAR (VER DEPOIS)
+        ///// COPY THE BUTTON TO SEE ( SEE LATER )
         String name = textName.getText();
         ProductDao pdao = new ProductDao();
         pdao.search(name);

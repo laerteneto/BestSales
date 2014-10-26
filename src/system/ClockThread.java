@@ -15,28 +15,28 @@ public class ClockThread extends JFrame {
 
     public void iniciaRelogio() {
 
-        new Thread() {//instancia nova thread já implementando o método run()
+        new Thread() {//initiate a new thread
 
             @Override
-            public void run() {//sobrescreve o método run()
+            public void run() {
 
-                while (0 == 0) {//while para fazer o loop infinito
+                while (0 == 0) {
 
-                    GregorianCalendar gc = new GregorianCalendar();//novo gregorian calendar, onde temos a data atual
+                    GregorianCalendar gc = new GregorianCalendar();
 
-                    int hora = gc.get(Calendar.HOUR_OF_DAY);//pega as horas
+                    int hora = gc.get(Calendar.HOUR_OF_DAY);
 
-                    int minuto = gc.get(Calendar.MINUTE);//pega os minutos
+                    int minuto = gc.get(Calendar.MINUTE);
 
-                    int segundo = gc.get(Calendar.SECOND);//pega os segundos
+                    int segundo = gc.get(Calendar.SECOND);
 
-                    String horaString;//nova string horas
+                    String horaString;
 
-                    String minString;//nova string minutos
+                    String minString;
 
-                    String segundoString;//nova string segundos
+                    String segundoString;
 
-                    if (hora < 10) {//se hora for menor que 10 precisa colocar um 0 à esquerda
+                    if (hora < 10) {
 
                         horaString = "0" + hora;
 
@@ -46,7 +46,7 @@ public class ClockThread extends JFrame {
 
                     }
 
-                    if (minuto < 10) {//se minuto for menor que 10 precisa colocar um 0 à esquerda
+                    if (minuto < 10) {
 
                         minString = "0" + minuto;
 
@@ -56,7 +56,7 @@ public class ClockThread extends JFrame {
 
                     }
 
-                    if (segundo < 10) {//se segundo for menor que 10 precisa colocar um 0 à esquerda
+                    if (segundo < 10) {
 
                         segundoString = "0" + segundo;
 
@@ -66,11 +66,11 @@ public class ClockThread extends JFrame {
 
                     }
 
-                    labelTime.setText(horaString + ":" + minString + ":" + segundoString);//seta hora atual no label
+                    labelTime.setText(horaString + ":" + minString + ":" + segundoString);
 
                     try {
 
-                        sleep(1000);//faz a thread entrar em estado de espera por 1000 milissegundos ou 1 segundo
+                        sleep(1000);
 
                     } catch (Exception e) {
                     }
@@ -78,7 +78,7 @@ public class ClockThread extends JFrame {
                 }
 
             }
-        }.start();//inicia a thread.
+        }.start();//initiate a thread.
 
     }
 }
