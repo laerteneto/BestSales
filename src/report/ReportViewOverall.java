@@ -275,8 +275,8 @@ public class ReportViewOverall extends JInternalFrame {
             tableModel.removeRow(0);
         }
         /* Money format */
-        Locale BRAZIL = new Locale("pt", "BR");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
+        Locale US = new Locale("en", "UK");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         /* Date format */

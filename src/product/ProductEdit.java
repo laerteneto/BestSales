@@ -25,7 +25,7 @@ public class ProductEdit extends JDialog {
         this.productView = productView;
         mainPainel = new JPanel(null);
 
-        /*TITULO*/
+        /*Title*/
         labelTitle = new JLabel("EDITING PRODUCTS");
         labelTitle.setSize(300, 50);
         labelTitle.setLocation(10, 5);

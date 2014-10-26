@@ -207,8 +207,8 @@ public class ProductView extends JInternalFrame {
         }
 
         /* MONEY FORMAT */
-        Locale BRAZIL = new Locale("pt", "BR");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
+        Locale US = new Locale("en", "UK");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         /* DATE FORMAT */
