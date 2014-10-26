@@ -34,13 +34,13 @@ public class CustomerView extends JInternalFrame {
     public CustomerView() {
         mainPainel = new JPanel(null);
 
-        /*TITULO*/
+        /*TITLE*/
         labelTitle = new JLabel("Customers List");
         labelTitle.setSize(300, 50);
         labelTitle.setLocation(10, 5);
         labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
 
-        /* ADICIONANDO AO PAINEL */
+        /* ADDING To THE PANEL */
 
 
         labelName = new JLabel("NAME :");
@@ -87,7 +87,7 @@ public class CustomerView extends JInternalFrame {
         mainPainel.add(scrollTabelaCliente);
 
         /*OBS*/
-        labelObs = new JLabel("Double-click in the record to edit it !");
+        labelObs = new JLabel("Double-click on the record to edit it !");
         labelObs.setSize(350, 15);
         labelObs.setLocation(10, 525);
         labelObs.setFont(new Font("arial", Font.BOLD, 12));
@@ -105,7 +105,7 @@ public class CustomerView extends JInternalFrame {
         this.search();
 
     }
-    
+        
     public void Events() {
     	CustomerView view = this;
         buttomSearch.addActionListener(new ActionListener() {
