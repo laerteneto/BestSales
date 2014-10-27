@@ -1,6 +1,7 @@
 package report;
 
 import system.SystemWindow;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -123,21 +125,18 @@ public class ReportViewToday extends JInternalFrame {
                         double sum = 0;
                         for (int i = 0; i < tableCustomer.getRowCount(); i++) {
                             if (tableCustomer.isCellSelected(i, 1)) {
-                                String removeComma = tableModel.getValueAt(i, 1).toString();
-                                removeComma = removeComma.replace(".", " ");
-                                removeComma = removeComma.replace(" ", "");
-                                removeComma = removeComma.replace(",", ".");
-                                sum = sum + Double.parseDouble(removeComma);
+                                String revenue = tableModel.getValueAt(i, 1).toString();
+                                System.out.println(revenue);
+                                sum = sum + Double.parseDouble(revenue);
                             }
                         }
                         String Sum = String.valueOf(sum);
 
                         /* OBTENDO FORMATO CORRETO DO DINHEIRO */
-                        Locale BR = new Locale("pt", "BR");
-                        DecimalFormatSymbols R = new DecimalFormatSymbols(BR);
-                        DecimalFormat DR = new DecimalFormat("###,###,##0.00", R);
-
-
+                        Locale US = new Locale("en", "UK");
+                        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
+                        DecimalFormat DR = new DecimalFormat("###,###,##0.00", REAL);
+                        
                         labelSumSelected.setText(DR.format(Double.parseDouble(Sum)));
 
                     }
