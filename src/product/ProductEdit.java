@@ -145,6 +145,7 @@ public class ProductEdit extends JDialog {
                         } else {
                             setVisible(false);
                         }
+                        productView.search();
 
                     }
                 });
