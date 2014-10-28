@@ -3,7 +3,6 @@ package product;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -25,7 +24,7 @@ public class ProductEdit extends JDialog {
         this.productView = productView;
         mainPainel = new JPanel(null);
 
-        /*Title*/
+        /*TITULO*/
         labelTitle = new JLabel("EDITING PRODUCTS");
         labelTitle.setSize(300, 50);
         labelTitle.setLocation(10, 5);
@@ -145,7 +144,6 @@ public class ProductEdit extends JDialog {
                             return;
                         } else {
                             setVisible(false);
-                            productView.search();
                         }
 
                     }

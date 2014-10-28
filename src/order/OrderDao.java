@@ -159,9 +159,9 @@ public class OrderDao {
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "ERROR SAVING  , CHECK DATA", null, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR SALVING  , CHECK DATA", null, JOptionPane.WARNING_MESSAGE);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR SAVING , CHECK DATA", null, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR SALVING , CHECK DATA", null, JOptionPane.WARNING_MESSAGE);
             ex.printStackTrace();
         }catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "MAKE SURE IF THE DATA IS CORRECT", null, JOptionPane.WARNING_MESSAGE);

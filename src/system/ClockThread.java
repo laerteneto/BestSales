@@ -15,28 +15,28 @@ public class ClockThread extends JFrame {
 
     public void iniciaRelogio() {
 
-        new Thread() {//initiate a new thread
+        new Thread() {//instancia nova thread já implementando o método run()
 
             @Override
-            public void run() {
+            public void run() {//sobrescreve o método run()
 
-                while (0 == 0) {
+                while (0 == 0) {//while para fazer o loop infinito
 
-                    GregorianCalendar gc = new GregorianCalendar();
+                    GregorianCalendar gc = new GregorianCalendar();//novo gregorian calendar, onde temos a data atual
 
-                    int hora = gc.get(Calendar.HOUR_OF_DAY);
+                    int hora = gc.get(Calendar.HOUR_OF_DAY);//pega as horas
 
-                    int minuto = gc.get(Calendar.MINUTE);
+                    int minuto = gc.get(Calendar.MINUTE);//pega os minutos
 
-                    int segundo = gc.get(Calendar.SECOND);
+                    int segundo = gc.get(Calendar.SECOND);//pega os segundos
 
-                    String horaString;
+                    String horaString;//nova string horas
 
-                    String minString;
+                    String minString;//nova string minutos
 
-                    String segundoString;
+                    String segundoString;//nova string segundos
 
-                    if (hora < 10) {
+                    if (hora < 10) {//se hora for menor que 10 precisa colocar um 0 à esquerda
 
                         horaString = "0" + hora;
 
@@ -46,7 +46,7 @@ public class ClockThread extends JFrame {
 
                     }
 
-                    if (minuto < 10) {
+                    if (minuto < 10) {//se minuto for menor que 10 precisa colocar um 0 à esquerda
 
                         minString = "0" + minuto;
 
@@ -56,7 +56,7 @@ public class ClockThread extends JFrame {
 
                     }
 
-                    if (segundo < 10) {
+                    if (segundo < 10) {//se segundo for menor que 10 precisa colocar um 0 à esquerda
 
                         segundoString = "0" + segundo;
 
@@ -66,11 +66,11 @@ public class ClockThread extends JFrame {
 
                     }
 
-                    labelTime.setText(horaString + ":" + minString + ":" + segundoString);
+                    labelTime.setText(horaString + ":" + minString + ":" + segundoString);//seta hora atual no label
 
                     try {
 
-                        sleep(1000);
+                        sleep(1000);//faz a thread entrar em estado de espera por 1000 milissegundos ou 1 segundo
 
                     } catch (Exception e) {
                     }
@@ -78,7 +78,7 @@ public class ClockThread extends JFrame {
                 }
 
             }
-        }.start();//initiate a thread.
+        }.start();//inicia a thread.
 
     }
 }

@@ -208,8 +208,8 @@ public class InventoryView extends JInternalFrame {
         }
 
         /* OBTENDO FORMATO CORRETO DO DINHEIRO */
-        Locale US = new Locale("en", "UK");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
+        Locale BRAZIL = new Locale("pt", "BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         /* OBETNDO FORAMTO CORRETO PARA DATA */

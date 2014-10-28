@@ -34,13 +34,13 @@ public class CustomerView extends JInternalFrame {
     public CustomerView() {
         mainPainel = new JPanel(null);
 
-        /*TITLE*/
+        /*TITULO*/
         labelTitle = new JLabel("Customers List");
         labelTitle.setSize(300, 50);
         labelTitle.setLocation(10, 5);
         labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
 
-        /* ADDING To THE PANEL */
+        /* ADICIONANDO AO PAINEL */
 
 
         labelName = new JLabel("NAME :");
@@ -86,8 +86,8 @@ public class CustomerView extends JInternalFrame {
 
         mainPainel.add(scrollTabelaCliente);
 
-        /*BOTTOM NOTION*/
-        labelObs = new JLabel("Double-click on the record to edit it !");
+        /*OBS*/
+        labelObs = new JLabel("Double-click in the record to edit it !");
         labelObs.setSize(350, 15);
         labelObs.setLocation(10, 525);
         labelObs.setFont(new Font("arial", Font.BOLD, 12));
@@ -105,9 +105,9 @@ public class CustomerView extends JInternalFrame {
         this.search();
 
     }
-        
+
     public void Events() {
-    	CustomerView view = this;
+        final CustomerView view = this;
         buttomSearch.addActionListener(new ActionListener() {
 
             @Override
@@ -134,29 +134,30 @@ public class CustomerView extends JInternalFrame {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     Integer id = null;
-                    String nome = null;
-                    String cpf = null;
-                    String telefone = null;
+                    String name = null;
+                    String ssn = null;
+                    String phone = null;
                     String end = null;
-                    String data = null;
+                    String date = null;
                     int i = tableCustomer.getSelectedRow();
 
                     if (tableCustomer.isCellSelected(i, 0)) {
                         id = Integer.parseInt(String.valueOf(tableCustomer.getValueAt(i, 0)));
-                        nome = tableCustomer.getValueAt(i, 1).toString();
-                        cpf = tableCustomer.getValueAt(i, 2).toString();
-                        telefone = tableCustomer.getValueAt(i, 3).toString();
+                        name = tableCustomer.getValueAt(i, 1).toString();
+                        ssn = tableCustomer.getValueAt(i, 2).toString();
+                        phone = tableCustomer.getValueAt(i, 3).toString();
                         if (tableCustomer.getValueAt(i, 4) == null) {
                             end = "";
                         } else {
                             end = tableCustomer.getValueAt(i, 4).toString();
                         }
-                        data = tableCustomer.getValueAt(i, 5).toString();
+                        date = tableCustomer.getValueAt(i, 5).toString();
                     }
 
-                    CustomerEdit clienteEdicao = new CustomerEdit(view, id, nome, cpf, telefone, end, data);
-                    clienteEdicao.setVisible(true);
-                    clienteEdicao.Events();
+                    CustomerEdit customerEdition = new CustomerEdit(view, id, name, ssn, phone, end, date);
+                    customerEdition.setVisible(true);
+                    //clienteEdicao.Events();
+
                 }
             }
         });
@@ -168,23 +169,23 @@ public class CustomerView extends JInternalFrame {
         String nome = textoName.getText();
         CustomerDao cliente = new CustomerDao();
         cliente.search(nome);
-        System.out.println("Searched");
+
         while (tableModel.getRowCount() > 0) {
             tableModel.removeRow(0);
         }
 
-        /* OBTAIN CORRECT DATE FORMAT */
+        /* DATE FORMAT */
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         try {
             while (cliente.list.next()) {
-                int strCodigo = cliente.list.getInt("id");
-                String strNome = cliente.list.getString("nome");
-                String strCpf = cliente.list.getString("cpf");
-                String strTelefone = cliente.list.getString("telefone");
+                int strCode = cliente.list.getInt("id");
+                String strName = cliente.list.getString("nome");
+                String strSsn = cliente.list.getString("cpf");
+                String strphone = cliente.list.getString("telefone");
                 String strEnd = cliente.list.getString("endereco");
-                Date strData = cliente.list.getDate("data_cadastro");
-                tableModel.addRow(new Object[]{strCodigo, strNome, strCpf, strTelefone, strEnd, sdf.format(strData)});
+                Date strDate = cliente.list.getDate("data_cadastro");
+                tableModel.addRow(new Object[]{strCode, strName, strSsn, strphone, strEnd, sdf.format(strDate)});
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
