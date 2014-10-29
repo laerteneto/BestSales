@@ -308,7 +308,7 @@ public class SystemWindow extends JFrame {
                     }
                 });
 
-
+ 
         menuItemReportToday.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
