@@ -19,7 +19,7 @@ public class InventoryRegister extends JInternalFrame {
     private JPanel mainPainel;
     private JLabel labelTitle, labelName, labelQuantity, labelDate;
     private JComboBox comboProduct;
-    private JTextField TextQuantidade, TextData;
+    private JTextField TextQuantity, TextData;
     private JButton buttomNew, buttomSave;
 
     public InventoryRegister() {
@@ -43,7 +43,7 @@ public class InventoryRegister extends JInternalFrame {
 
         comboProduct.addItem("");
 
-        /***************** Getiing the values of database to put in a combo *******************/
+        /***************** Getting the values of database to put in a combo *******************/
         InventoryDao inventory = new InventoryDao();
         inventory.readAll();
         try {
@@ -65,9 +65,9 @@ public class InventoryRegister extends JInternalFrame {
         labelQuantity.setLocation(500, 60);
 
 
-        TextQuantidade = new JTextField();
-        TextQuantidade.setSize(60, 30);
-        TextQuantidade.setLocation(605, 60);
+        TextQuantity = new JTextField();
+        TextQuantity.setSize(60, 30);
+        TextQuantity.setLocation(605, 60);
 
         labelDate = new JLabel("DATE OF STOCK :");
         labelDate.setSize(150, 30);
@@ -97,7 +97,7 @@ public class InventoryRegister extends JInternalFrame {
         mainPainel.add(labelQuantity);
         mainPainel.add(labelDate);
 
-        mainPainel.add(TextQuantidade);
+        mainPainel.add(TextQuantity);
         mainPainel.add(TextData);
 
         mainPainel.add(buttomNew);
@@ -120,7 +120,7 @@ public class InventoryRegister extends JInternalFrame {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        TextQuantidade.setText("");
+                        TextQuantity.setText("");
                         transferFocus();
                     }
                 });
@@ -129,18 +129,18 @@ public class InventoryRegister extends JInternalFrame {
 
                     public void actionPerformed(ActionEvent e) {
                         Object name = comboProduct.getSelectedItem();
-                        String quantity = TextQuantidade.getText();
+                        String quantity = TextQuantity.getText();
                         String date = TextData.getText();
                         quantity = quantity.replace(" ", "");
 
-                        InventoryDao estoque = new InventoryDao();
-                        estoque.getId(name);
+                        InventoryDao inventory = new InventoryDao();
+                        inventory.getId(name);
 
                         String sql2 = "";
                         int id = 0;
                         try {
-                            while (estoque.product_id.next()) {
-                                id = estoque.product_id.getInt("id");
+                            while (inventory.product_id.next()) {
+                                id = inventory.product_id.getInt("id");
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(InventoryRegister.class.getName()).log(Level.SEVERE, null, ex);
@@ -149,29 +149,29 @@ public class InventoryRegister extends JInternalFrame {
                         sql2 += "INSERT INTO estoque (produtos_id,quantidade,data_estoque) ";
                         sql2 += "VALUES ( '" + id + "', '" + quantity + "', '" + date + "' )";
 
-                        estoque.register(sql2);
+                        inventory.register(sql2);
 
                         try {
-                            estoque.stm.close();
+                            inventory.stm.close();
                         } catch (SQLException ex) {
                             Logger.getLogger(InventoryRegister.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        TextQuantidade.setText("");
+                        TextQuantity.setText("");
 
-                        // ATUALIZAR A COMBO
+                        // UPDATE COMBO
                         comboProduct.removeAllItems();
                         comboProduct.addItem("");
-                        InventoryDao mostrarAtualizado = new InventoryDao();
-                        mostrarAtualizado.readAll();
+                        InventoryDao showUpdated = new InventoryDao();
+                        showUpdated.readAll();
                         try {
-                            while (mostrarAtualizado.list.next()) {
-                                comboProduct.addItem(mostrarAtualizado.list.getArray("nome"));
+                            while (showUpdated.list.next()) {
+                                comboProduct.addItem(showUpdated.list.getArray("nome"));
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(InventoryRegister.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         try {
-                            estoque.stm.close();
+                            inventory.stm.close();
                         } catch (SQLException ex) {
                             Logger.getLogger(InventoryRegister.class.getName()).log(Level.SEVERE, null, ex);
                         }

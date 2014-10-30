@@ -28,40 +28,37 @@ import javax.swing.table.DefaultTableModel;
 
 public class InventoryView extends JInternalFrame {
 
-    private JPanel painelPrincipal;
-    private JLabel labelTitulo, rotuloNome, labelObs;
-    private JTextField textoNome;
-    private JTable tabelaCliente;
-    private JButton botaoConsultar, botaoRemoverLinhas;
+    private JPanel mainPainel;
+    private JLabel labelTitle, labelName, labelObs;
+    private JTextField textName;
+    private JTable tableInventory;
+    private JButton buttomSearch, buttomRemoveRows;
     private DefaultTableModel tableModel;
 
     public InventoryView() {
-        painelPrincipal = new JPanel(null);
+        mainPainel = new JPanel(null);
 
-        /*TITULO*/
-        labelTitulo = new JLabel("STOCK OF PRODUCTS");
-        labelTitulo.setSize(300, 50);
-        labelTitulo.setLocation(10, 5);
-        labelTitulo.setFont(new Font("Verdana", Font.BOLD, 20));
+        labelTitle = new JLabel("STOCK OF PRODUCTS");
+        labelTitle.setSize(300, 50);
+        labelTitle.setLocation(10, 5);
+        labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
 
-        /* ADICIONANDO AO PAINEL */
-
-
-        rotuloNome = new JLabel("NAME :");
-        rotuloNome.setSize(50, 30);
-        rotuloNome.setLocation(10, 65);
+        
+        labelName = new JLabel("NAME :");
+        labelName.setSize(50, 30);
+        labelName.setLocation(10, 65);
 
 
-        textoNome = new JTextField();
-        textoNome.setSize(730, 30);
-        textoNome.setLocation(100, 65);
+        textName = new JTextField();
+        textName.setSize(730, 30);
+        textName.setLocation(100, 65);
 
 
-        botaoConsultar = new JButton("SEARCH");
-        botaoConsultar.setSize(150, 30);
-        botaoConsultar.setLocation(848, 65);
+        buttomSearch = new JButton("SEARCH");
+        buttomSearch.setSize(150, 30);
+        buttomSearch.setLocation(848, 65);
 
-        /*EDIÇÃO DAS CELULAS NÃO PODE ACONTECER*/
+        /*EDITION IS NOT ALLOWED*/
         tableModel = new DefaultTableModel() {
 
             @Override
@@ -70,7 +67,7 @@ public class InventoryView extends JInternalFrame {
             }
         };
 
-        tabelaCliente = new JTable(tableModel);
+        tableInventory = new JTable(tableModel);
         tableModel.addColumn("id");
         tableModel.addColumn("PRODUCT");
         tableModel.addColumn("QUANTITY");
@@ -78,23 +75,23 @@ public class InventoryView extends JInternalFrame {
         tableModel.addColumn("DATE OF STOCK");
 
 
-        JScrollPane scrollTabelaCliente = new JScrollPane(tabelaCliente);
+        JScrollPane scrollTabelaCliente = new JScrollPane(tableInventory);
         scrollTabelaCliente.setSize(990, 400);
         scrollTabelaCliente.setLocation(10, 110);
 
-        botaoRemoverLinhas = new JButton("REMOVE SELECT LINE(s)");
-        botaoRemoverLinhas.setSize(350, 30);
-        botaoRemoverLinhas.setLocation(300, 515);
+        buttomRemoveRows = new JButton("REMOVE SELECT LINE(s)");
+        buttomRemoveRows.setSize(350, 30);
+        buttomRemoveRows.setLocation(300, 515);
 
 
-        painelPrincipal.add(labelTitulo);
-        painelPrincipal.add(rotuloNome);
-        painelPrincipal.add(textoNome);
+        mainPainel.add(labelTitle);
+        mainPainel.add(labelName);
+        mainPainel.add(textName);
 
-        painelPrincipal.add(botaoConsultar);
-        painelPrincipal.add(botaoRemoverLinhas);
+        mainPainel.add(buttomSearch);
+        mainPainel.add(buttomRemoveRows);
 
-        painelPrincipal.add(scrollTabelaCliente);
+        mainPainel.add(scrollTabelaCliente);
 
         /*OBS*/
         labelObs = new JLabel("Double-click in the record to edit it!");
@@ -103,92 +100,91 @@ public class InventoryView extends JInternalFrame {
         labelObs.setFont(new Font("arial", Font.BOLD, 12));
         labelObs.setForeground(Color.gray);
 
-        painelPrincipal.add(labelObs);
+        mainPainel.add(labelObs);
 
 
         setTitle("Products in stock");
         setSize(800, 600);
 
-        getContentPane().add(painelPrincipal);
+        getContentPane().add(mainPainel);
 
-        this.Eventos();
-        this.consultar();
-
+        this.Events();
+        this.search();
 
     }
 
-    public void Eventos() {
+    public void Events() {
 
-        botaoConsultar.addActionListener(new ActionListener() {
+        buttomSearch.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                consultar();
-                botaoRemoverLinhas.transferFocus();
+                search();
+                buttomRemoveRows.transferFocus();
 
             }
         });
 
-        textoNome.addKeyListener(
+        textName.addKeyListener(
                 new KeyAdapter() {
 
                     @Override
                     public void keyPressed(KeyEvent e) {
                         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                            consultar();
+                            search();
                         }
                     }
                 });
 
 
-        botaoRemoverLinhas.addActionListener(
+        buttomRemoveRows.addActionListener(
                 new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
 
-                        /*VERIFICANDO SE ALGUMA COISA TA SELECIONADA*/
-                        if (tabelaCliente.getRowCount() == 0) {
+                        /*VERIFYING IF IS SELECTED*/
+                        if (tableInventory.getRowCount() == 0) {
                             JOptionPane.showMessageDialog(null, "Select the rows that you want to remove", null, JOptionPane.WARNING_MESSAGE);
                             return;
                         }
 
                         int result = JOptionPane.showConfirmDialog(null, "You really want to remove the selected rows?", "ATTENTION", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                         if (result == 1) {
-                            return;  // PARAR TUDO SE O OPERADOR COLOCAR NÃO !
+                            return;  // STOP WITH NO
                         }
 
                         for (int i = 0; i < tableModel.getRowCount(); i++) {
-                            if (tabelaCliente.isCellSelected(i, 0)) {
-                                Object id = tabelaCliente.getValueAt(i, 0);
+                            if (tableInventory.isCellSelected(i, 0)) {
+                                Object id = tableInventory.getValueAt(i, 0);
                                 System.out.println(id);
-                                InventoryDao removerDoEstoque = new InventoryDao();
-                                removerDoEstoque.remove(id);
+                                InventoryDao removeFromInventory = new InventoryDao();
+                                removeFromInventory.remove(id);
                             }
                         }
-                        consultar();
+                        search();
                     }
                 });
 
-        tabelaCliente.addMouseListener(new MouseAdapter() {
+        tableInventory.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     Integer id = null;
-                    String nome = null;
-                    Integer quantidade = null;
-                    String data = null;
-                    int i = tabelaCliente.getSelectedRow();
+                    String name = null;
+                    Integer quantity = null;
+                    String date = null;
+                    int i = tableInventory.getSelectedRow();
 
-                    if (tabelaCliente.isCellSelected(i, 0)) {
-                        id = Integer.parseInt(String.valueOf(tabelaCliente.getValueAt(i, 0)));
-                        nome = tabelaCliente.getValueAt(i, 1).toString();
-                        quantidade = Integer.parseInt(String.valueOf(tabelaCliente.getValueAt(i, 2)));
-                        data = tabelaCliente.getValueAt(i, 4).toString();
+                    if (tableInventory.isCellSelected(i, 0)) {
+                        id = Integer.parseInt(String.valueOf(tableInventory.getValueAt(i, 0)));
+                        name = tableInventory.getValueAt(i, 1).toString();
+                        quantity = Integer.parseInt(String.valueOf(tableInventory.getValueAt(i, 2)));
+                        date = tableInventory.getValueAt(i, 4).toString();
                     }
 
-                    InventoryEdit estoqueEdicao = new InventoryEdit(id, nome, quantidade, data);
-                    estoqueEdicao.setVisible(true);
+                    InventoryEdit inventoryEdition = new InventoryEdit(id, name, quantity, date);
+                    inventoryEdition.setVisible(true);
 
                 }
             }
@@ -196,33 +192,31 @@ public class InventoryView extends JInternalFrame {
 
     }
 
-    public void consultar() {
-
-        ///// COPIA DO BOTAO DE CONSULTAR (VER DEPOIS)
-        String nome = textoNome.getText();
-        InventoryDao estoqueDao = new InventoryDao();
-        estoqueDao.listInventory(nome);
+    public void search() {
+        String name = textName.getText();
+        InventoryDao inventory = new InventoryDao();
+        inventory.listInventory(name);
 
         while (tableModel.getRowCount() > 0) {
             tableModel.removeRow(0);
         }
 
-        /* OBTENDO FORMATO CORRETO DO DINHEIRO */
+        /* MONEY FORMAT */
         Locale BRAZIL = new Locale("pt", "BR");
         DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
-        /* OBETNDO FORAMTO CORRETO PARA DATA */
+        /* DATA FORMAT */
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         try {
-            while (estoqueDao.list.next()) {
-                int id = estoqueDao.list.getInt("id");
-                String strNome = estoqueDao.list.getString("nome");
-                int Intquantidade = estoqueDao.list.getInt("quantidade");
-                String strValor = estoqueDao.list.getString("preco_venda");
-                Date strData = estoqueDao.list.getDate("data_estoque");
-                tableModel.addRow(new Object[]{id, strNome, Intquantidade, DinheiroReal.format(Double.parseDouble(strValor)), sdf.format(strData)});
+            while (inventory.list.next()) {
+                int id = inventory.list.getInt("id");
+                String strName = inventory.list.getString("nome");
+                int Intquantity = inventory.list.getInt("quantidade");
+                String strValue = inventory.list.getString("preco_venda");
+                Date strDate = inventory.list.getDate("data_estoque");
+                tableModel.addRow(new Object[]{id, strName, Intquantity, DinheiroReal.format(Double.parseDouble(strValue)), sdf.format(strDate)});
             }
         } catch (SQLException ex) {
             Logger.getLogger(InventoryView.class.getName()).log(Level.SEVERE, null, ex);
