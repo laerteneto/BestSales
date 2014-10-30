@@ -80,7 +80,7 @@ public class CustomerEdit extends JDialog {
 
        MaskFormatter ssnm; // Mask
         try {
-            ssnm = new javax.swing.text.MaskFormatter("###-###-####");
+            ssnm = new javax.swing.text.MaskFormatter("###-##-####");
             textSsn = new javax.swing.JFormattedTextField(ssnm);
             textSsn.setText(ssn);
             textSsn.setSize(160, 30);

@@ -77,7 +77,7 @@ public class CustomerRegister extends JInternalFrame {
         
         MaskFormatter cpf; // Mask
         try {
-            cpf = new javax.swing.text.MaskFormatter("###-###-####");
+            cpf = new javax.swing.text.MaskFormatter("###-##-####");
             textSsn = new javax.swing.JFormattedTextField(cpf);
             textSsn.setSize(160, 30);
             textSsn.setLocation(130, 100);
