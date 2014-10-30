@@ -34,13 +34,13 @@ public class SaleView extends JInternalFrame {
     public SaleView() {
         mainPainel = new JPanel(null);
 
-        /*TITLE*/
-        labelTitle = new JLabel("CUSTOMER WITH ORDERS");
+        /*TITULO*/
+        labelTitle = new JLabel("PURCHASES CUSTOMER");
         labelTitle.setSize(300, 50);
         labelTitle.setLocation(10, 5);
         labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
 
-        /* ADDING TO THE PANEL */
+        /* ADICIONANDO AO PAINEL */
 
 
         labelName = new JLabel("NAME :");
@@ -67,10 +67,10 @@ public class SaleView extends JInternalFrame {
         };
 
         tableCustomer = new JTable(tableModel);
-        tableModel.addColumn("ORDER ID");
+        tableModel.addColumn("CODE OF PURCHASE");
         tableModel.addColumn("CUSTOMER NAME");
-        tableModel.addColumn("VALUE $");
-        tableModel.addColumn("DATE OF ORDER");
+        tableModel.addColumn("VALUE R$");
+        tableModel.addColumn("DATE OF PURCHASE");
 
 
         JScrollPane scrollTabelaCliente = new JScrollPane(tableCustomer);
@@ -129,8 +129,8 @@ public class SaleView extends JInternalFrame {
         }
 
         /* Money format */
-        Locale US = new Locale("en", "UK");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
+        Locale BRAZIL = new Locale("pt", "BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         /* data format */

@@ -32,7 +32,7 @@ public class ProductView extends JInternalFrame {
     private JTable tableCustomer;
     private JButton buttomSearch, buttomRemoveRows;
     private DefaultTableModel tableModel;
-    
+
     public ProductView() {
         mainPainel = new JPanel(null);
 
@@ -90,7 +90,7 @@ public class ProductView extends JInternalFrame {
 
         mainPainel.add(scrollTabelaCliente);
 
-        /*Bottome Notion*/
+        /*OBS*/
         labelObs = new JLabel("Double-click the record to edit it !");
         labelObs.setSize(350, 15);
         labelObs.setLocation(10, 525);
@@ -111,7 +111,7 @@ public class ProductView extends JInternalFrame {
     }
 
     public void Events() {
-    	ProductView productView = this;
+        final ProductView productView = this;
         buttomSearch.addActionListener(new ActionListener() {
 
             @Override
@@ -165,7 +165,6 @@ public class ProductView extends JInternalFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-            	
                 if (e.getClickCount() == 2) {
                     Integer id = null;
                     String name = null;
@@ -197,7 +196,7 @@ public class ProductView extends JInternalFrame {
     }
 
     public void search() {
-        ///// COPY THE BUTTON TO SEE ( SEE LATER )
+        ///// SEARCH BUTTOM (SEE IT LATER)
         String name = textName.getText();
         ProductDao pdao = new ProductDao();
         pdao.search(name);
@@ -207,8 +206,8 @@ public class ProductView extends JInternalFrame {
         }
 
         /* MONEY FORMAT */
-        Locale US = new Locale("en", "UK");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
+        Locale BRAZIL = new Locale("pt", "BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         /* DATE FORMAT */

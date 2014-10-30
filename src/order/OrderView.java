@@ -1,6 +1,6 @@
 package order;
 
-/* Important libraries */
+/* IMPORTAÇÃO DAS BIBLIOTECAS */
 import system.SystemWindow;
 import customer.CustomerDao;
 
@@ -653,8 +653,8 @@ public class OrderView extends JInternalFrame {
         orderList.add(p);
 
         /* Money format */
-        Locale US = new Locale("en", "UK");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
+        Locale BRAZIL = new Locale("pt", "BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         while (tableModel.getRowCount() > 0) {

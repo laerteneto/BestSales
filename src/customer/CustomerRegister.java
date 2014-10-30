@@ -26,8 +26,8 @@ public class CustomerRegister extends JInternalFrame {
         mainPainel = new JPanel(null);
 
         /*TITULO*/
-        labelTitle = new JLabel("CUSTOMER REGISTRATION");
-        labelTitle.setSize(350, 50);
+        labelTitle = new JLabel("REGISTRATION CUSTOMER");
+        labelTitle.setSize(300, 50);
         labelTitle.setLocation(10, 5);
         labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
         mainPainel.add(labelTitle);
@@ -176,7 +176,7 @@ public class CustomerRegister extends JInternalFrame {
                         CustomerDao cd = new CustomerDao();
                         cd.register(sql);
 
-                        if (cd.isRegistered) {
+                        if (cd.cadastrado) {
                             textName.setText("");
                             textSsn.setText("");
                             textPhone.setText("");

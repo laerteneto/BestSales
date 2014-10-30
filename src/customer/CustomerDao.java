@@ -14,16 +14,16 @@ public class CustomerDao {
     public ResultSet list;
     Statement stm = null;
     boolean edited;
-    boolean isRegistered = false;
+    boolean cadastrado = false;
 
-    public ResultSet search(String name) {
+    public ResultSet search(String nome) {
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/projetoivo", "solar", "solar");
             stm = connection.createStatement();
 
-            String sql = "select * from clientes where UPPER(nome) like '" + name.toUpperCase() + "%' ORDER BY id DESC";
+            String sql = "select * from clientes where UPPER(nome) like '" + nome.toUpperCase() + "%' ORDER BY id DESC";
 
             list = stm.executeQuery(sql);
 
@@ -51,7 +51,7 @@ public class CustomerDao {
             if (resultado >= 1) {
                 System.out.println("User created!!");
                 JOptionPane.showMessageDialog(null, "Client successfully registered !");
-                isRegistered = true;
+                cadastrado = true;
             } else {
                 System.out.println("Erro in customer's registration !");
                 JOptionPane.showMessageDialog(null, "Error registering client, check the data !", null, JOptionPane.WARNING_MESSAGE);
@@ -65,7 +65,9 @@ public class CustomerDao {
             } catch (SQLException ex) {
                 System.out.println("Error when closing the connection");
             }
+
         }
+
     }
 
     public void readCustomer(String nome) {

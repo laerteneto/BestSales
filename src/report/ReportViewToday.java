@@ -1,7 +1,6 @@
 package report;
 
 import system.SystemWindow;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,7 +13,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -89,7 +87,7 @@ public class ReportViewToday extends JInternalFrame {
         scrollTabelaCliente.setLocation(10, 110);
 
 
-        buttomSave = new JButton("SELECTED ORDER");
+        buttomSave = new JButton("SELECTED SOMAR");
         buttomSave.setSize(200, 30);
         buttomSave.setLocation(10, 630);
 
@@ -125,18 +123,21 @@ public class ReportViewToday extends JInternalFrame {
                         double sum = 0;
                         for (int i = 0; i < tableCustomer.getRowCount(); i++) {
                             if (tableCustomer.isCellSelected(i, 1)) {
-                                String revenue = tableModel.getValueAt(i, 1).toString();
-                                System.out.println(revenue);
-                                sum = sum + Double.parseDouble(revenue);
+                                String removeComma = tableModel.getValueAt(i, 1).toString();
+                                removeComma = removeComma.replace(".", " ");
+                                removeComma = removeComma.replace(" ", "");
+                                removeComma = removeComma.replace(",", ".");
+                                sum = sum + Double.parseDouble(removeComma);
                             }
                         }
                         String Sum = String.valueOf(sum);
 
                         /* OBTENDO FORMATO CORRETO DO DINHEIRO */
-                        Locale US = new Locale("en", "UK");
-                        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
-                        DecimalFormat DR = new DecimalFormat("###,###,##0.00", REAL);
-                        
+                        Locale BR = new Locale("pt", "BR");
+                        DecimalFormatSymbols R = new DecimalFormatSymbols(BR);
+                        DecimalFormat DR = new DecimalFormat("###,###,##0.00", R);
+
+
                         labelSumSelected.setText(DR.format(Double.parseDouble(Sum)));
 
                     }
@@ -157,8 +158,8 @@ public class ReportViewToday extends JInternalFrame {
         }
 
         /* OBTENDO FORMATO CORRETO DO DINHEIRO */
-        Locale US = new Locale("en", "UK");
-        DecimalFormatSymbols REAL = new DecimalFormatSymbols(US);
+        Locale BRAZIL = new Locale("pt", "BR");
+        DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
         DecimalFormat DinheiroReal = new DecimalFormat("###,###,##0.00", REAL);
 
         /* OBTENDO FORMATO CORRETO PARA DATA */
