@@ -17,8 +17,10 @@ public class InventoryEdit extends JDialog {
     private JTextField TextQuantity, TextDate, TextProduct;
     private JButton buttomCancel, buttomSave;
     private int id;
+    final InventoryView view;
 
-    public InventoryEdit(Integer id, String produto, Integer quantidade, String data) {
+    public InventoryEdit(InventoryView view, Integer id, String produto, Integer quantidade, String data) {
+    	this.view = view;
         mainPainel = new JPanel(null);
         this.id = id;
 
@@ -105,10 +107,11 @@ public class InventoryEdit extends JDialog {
 
                         InventoryDao editar = new InventoryDao();
                         editar.edit(sql);
-
+                        
                         if (editar.edited) {
                             setVisible(false);
                         }
+                        view.consultar();
 
                     }
                 });

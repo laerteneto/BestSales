@@ -118,6 +118,7 @@ public class InventoryView extends JInternalFrame {
     }
 
     public void Eventos() {
+    	InventoryView view = this;
 
         botaoConsultar.addActionListener(new ActionListener() {
 
@@ -174,6 +175,7 @@ public class InventoryView extends JInternalFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
+                	
                     Integer id = null;
                     String nome = null;
                     Integer quantidade = null;
@@ -187,7 +189,7 @@ public class InventoryView extends JInternalFrame {
                         data = tabelaCliente.getValueAt(i, 4).toString();
                     }
 
-                    InventoryEdit estoqueEdicao = new InventoryEdit(id, nome, quantidade, data);
+					InventoryEdit estoqueEdicao = new InventoryEdit(view , id, nome, quantidade, data);
                     estoqueEdicao.setVisible(true);
 
                 }
