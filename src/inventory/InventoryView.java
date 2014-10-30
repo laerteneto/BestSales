@@ -108,17 +108,13 @@ public class InventoryView extends JInternalFrame {
 
         getContentPane().add(mainPainel);
 
-        this.Events();
+        this.Eventos();
         this.search();
 
     }
 
-<<<<<<< HEAD
     public void Eventos() {
     	InventoryView view = this;
-=======
-    public void Events() {
->>>>>>> 9c85231734427b474a2d89d2228e859383489635
 
         buttomSearch.addActionListener(new ActionListener() {
 
@@ -189,14 +185,8 @@ public class InventoryView extends JInternalFrame {
                         date = tableInventory.getValueAt(i, 4).toString();
                     }
 
-<<<<<<< HEAD
-					InventoryEdit estoqueEdicao = new InventoryEdit(view , id, nome, quantidade, data);
+					InventoryEdit estoqueEdicao = new InventoryEdit(view, id, name, quantity, date);
                     estoqueEdicao.setVisible(true);
-=======
-                    InventoryEdit inventoryEdition = new InventoryEdit(id, name, quantity, date);
-                    inventoryEdition.setVisible(true);
->>>>>>> 9c85231734427b474a2d89d2228e859383489635
-
                 }
             }
         });
@@ -234,4 +224,5 @@ public class InventoryView extends JInternalFrame {
         }
 
     }
+
 }
