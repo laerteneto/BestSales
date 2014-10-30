@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class InventoryEdit extends JDialog {
-
+     
     private JPanel mainPainel;
     private JLabel labelTitle, labelName, labelQuantity, labelDate;
     private JTextField TextQuantity, TextDate, TextProduct;
