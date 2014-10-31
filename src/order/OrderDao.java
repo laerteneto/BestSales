@@ -66,7 +66,7 @@ public class OrderDao {
         return list;
     }
 
-    public ResultSet productsComboBox(String nome) {
+    public ResultSet productsComboBox(String name) {
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -76,7 +76,7 @@ public class OrderDao {
             String sql = "SELECT t1.id, t1.produtos_id, t1.quantidade, t2.nome, t2.preco_compra, t2.preco_venda"
                     + " FROM estoque  AS t1"
                     + " JOIN produtos AS t2 ON (t1.produtos_id = t2.id)"
-                    + " where UPPER(t2.nome) like '" + nome.toUpperCase() + "%' order by nome";
+                    + " where UPPER(t2.nome) like '" + name.toUpperCase() + "%' order by nome";
 
             list = stm.executeQuery(sql);
         } catch (SQLException ex) {
@@ -93,7 +93,7 @@ public class OrderDao {
         return list;
     }
 
-    public ResultSet readUniqueProduct(String nome) {
+    public ResultSet readUniqueProduct(String name) {
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -103,7 +103,7 @@ public class OrderDao {
             String sql = "SELECT t1.id, t1.produtos_id, t1.quantidade, t2.nome, t2.preco_compra, t2.preco_venda "
                     + "FROM estoque  AS t1 "
                     + "JOIN produtos AS t2 ON (t1.produtos_id = t2.id) "
-                    + "WHERE t2.nome = '" + nome + "' ;";
+                    + "WHERE t2.nome = '" + name + "' ;";
 
 
             list = stm.executeQuery(sql);
@@ -123,14 +123,14 @@ public class OrderDao {
     }
 
     /*UPDATES E INSERTS*/
-    public void UpdateInventory(int NovaQuantidade, int id) {
+    public void UpdateInventory(int NewQuantity, int id) {
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/projetoivo", "solar", "solar");
             stm = connection.createStatement();
 
-            stm.executeUpdate("UPDATE estoque SET quantidade= " + NovaQuantidade + " WHERE id =" + id + ";");
+            stm.executeUpdate("UPDATE estoque SET quantidade= " + NewQuantity + " WHERE id =" + id + ";");
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,14 +146,14 @@ public class OrderDao {
         }
     }
 
-    public void InsertCompras(int cliente, String total, String data) {
+    public void InsertCompras(int customer, String total, String date) {
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/projetoivo", "solar", "solar");
             stm = connection.createStatement();
 
-            stm.executeUpdate("INSERT INTO compras (clientes_id,valor,data_compra) VALUES ( " + cliente + " , " + total + " , '" + data + "' );");
+            stm.executeUpdate("INSERT INTO compras (clientes_id,valor,data_compra) VALUES ( " + customer + " , " + total + " , '" + date + "' );");
 
             JOptionPane.showMessageDialog(null, "ORDER Successfully Saved!");
 

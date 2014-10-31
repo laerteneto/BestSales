@@ -108,13 +108,13 @@ public class InventoryView extends JInternalFrame {
 
         getContentPane().add(mainPainel);
 
-        this.Eventos();
+        this.Events();
         this.search();
 
     }
 
-    public void Eventos() {
-    	InventoryView view = this;
+    public void Events() {
+    	final InventoryView view = this;
 
         buttomSearch.addActionListener(new ActionListener() {
 
