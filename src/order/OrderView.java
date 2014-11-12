@@ -42,7 +42,7 @@ public class OrderView extends JInternalFrame {
 
     private JPanel mainPainel;
     private JLabel labelTitle, labelQuantity, labelProduct, labelTotal, labelDate, labelCustomerName;
-    private JTextField textoQuantity, textTotal, TextDate;
+    private JTextField textQuantity, textTotal, TextDate;
     private JTable tableCustomer;
     private JButton buttomAdd, buttomPrint, buttomRemoveItem, buttomFinishOrder;
     private DefaultTableModel tableModel;
@@ -125,7 +125,7 @@ public class OrderView extends JInternalFrame {
         comboNameProduct = new JComboBox();
         comboNameProduct.setSize(300, 30);
         comboNameProduct.setLocation(110, 110);
-        comboNameProduct.setEditable(true);
+        //comboNameProduct.setEditable(true);
 
 
         comboNameProduct.addItem("");
@@ -150,9 +150,9 @@ public class OrderView extends JInternalFrame {
         labelQuantity.setLocation(450, 110);
 
 
-        textoQuantity = new JTextField();
-        textoQuantity.setSize(60, 30);
-        textoQuantity.setLocation(600, 110);
+        textQuantity = new JTextField();
+        textQuantity.setSize(60, 30);
+        textQuantity.setLocation(600, 110);
 
 
         buttomAdd = new JButton("ADD");
@@ -211,7 +211,7 @@ public class OrderView extends JInternalFrame {
 
         mainPainel.add(labelTitle);
         mainPainel.add(comboNameProduct);
-        mainPainel.add(textoQuantity);
+        mainPainel.add(textQuantity);
         mainPainel.add(comboCustomers);
         mainPainel.add(labelQuantity);
         mainPainel.add(labelProduct);
@@ -272,7 +272,7 @@ public class OrderView extends JInternalFrame {
                     }
                 });
 
-        textoQuantity.addKeyListener(
+        textQuantity.addKeyListener(
                 new KeyAdapter() {
 
                     @Override
@@ -577,14 +577,14 @@ public class OrderView extends JInternalFrame {
         }
 
         //null quantity
-        if ("".equals(textoQuantity.getText())) {
+        if ("".equals(textQuantity.getText())) {
             JOptionPane.showMessageDialog(null, "QUANTITY IS EMPTY", "ATTENTION", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
 
         /*allowing spaces in quantity*/
-        String q = String.valueOf(textoQuantity.getText());
+        String q = String.valueOf(textQuantity.getText());
         q = q.replace(" ", "");
         p.setQuantity(Integer.valueOf(q));
 
@@ -630,9 +630,9 @@ public class OrderView extends JInternalFrame {
             }
         }
 
-        //Product no registered
+        //Product no registered --- this will be fixed later together with the function "KeyRelease"
         try {
-            Boolean thereIs = false;
+            Boolean thereIs = true; // this line is getting corrected the error so far
             OrderDao pedido = new OrderDao();
             pedido.readUniqueProduct(p.getProduct());
             while (pedido.list.next()) {
@@ -678,7 +678,7 @@ public class OrderView extends JInternalFrame {
 
         /*CHANGING THE FOCUS AND CLEANING SOME FIELDS*/
         comboNameProduct.setSelectedItem("");
-        textoQuantity.setText("");
+        textQuantity.setText("");
         TextDate.transferFocus();
     }
 }
