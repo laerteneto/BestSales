@@ -75,10 +75,10 @@ public class CustomerRegister extends JInternalFrame {
         
         
         
-        MaskFormatter cpf; // Mask
+        MaskFormatter ssn; // Mask
         try {
-            cpf = new javax.swing.text.MaskFormatter("###-##-####");
-            textSsn = new javax.swing.JFormattedTextField(cpf);
+            ssn = new javax.swing.text.MaskFormatter("###-##-####");
+            textSsn = new javax.swing.JFormattedTextField(ssn);
             textSsn.setSize(160, 30);
             textSsn.setLocation(130, 100);
         } catch (ParseException ex) {
@@ -86,10 +86,10 @@ public class CustomerRegister extends JInternalFrame {
         }
 
 
-        MaskFormatter telefone; // Mask
+        MaskFormatter phonem; // Mask
         try {
-            telefone = new javax.swing.text.MaskFormatter("(###)###-####");
-            textPhone = new javax.swing.JFormattedTextField(telefone);
+            phonem = new javax.swing.text.MaskFormatter("(###)###-####");
+            textPhone = new javax.swing.JFormattedTextField(phonem);
             textPhone.setSize(160, 30);
             textPhone.setLocation(130, 135);
         } catch (ParseException ex) {

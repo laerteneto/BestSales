@@ -77,8 +77,8 @@ public class SystemWindow extends JFrame {
 
         /* CUSTOMERS */
         menuItemListCustomer = new JMenuItem("List of customers");
-        menuItemRegisterCustomer = new JMenuItem("Register Client");
-        menuItemPurchaseCustomer = new JMenuItem("Shopping Customer");
+        menuItemRegisterCustomer = new JMenuItem("Register customer");
+        menuItemPurchaseCustomer = new JMenuItem("Shopping customer");
 
         /* INVENTORY */
         menuItemListInventory = new JMenuItem("List of products in inventory");

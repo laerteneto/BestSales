@@ -88,10 +88,18 @@ public class CustomerEdit extends JDialog {
         } catch (ParseException ex) {
             Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        textPhone = new javax.swing.JFormattedTextField(phone);
-        textPhone.setSize(160, 30);
-        textPhone.setLocation(130, 170);
+       
+        MaskFormatter phonem; // Mask
+        try {
+            phonem = new javax.swing.text.MaskFormatter("(###)###-####");
+            textPhone = new javax.swing.JFormattedTextField(phonem);
+            textPhone.setText(phone);
+            textPhone.setSize(160, 30);
+            textPhone.setLocation(130, 170);
+        } catch (ParseException ex) {
+            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
         textEnd = new JTextField(end);
         textEnd.setSize(700, 30);
