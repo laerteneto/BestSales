@@ -67,7 +67,7 @@ public class SaleView extends JInternalFrame {
         };
 
         tableCustomer = new JTable(tableModel);
-        tableModel.addColumn("CODE OF PURCHASE");
+        tableModel.addColumn("ORDER ID");
         tableModel.addColumn("CUSTOMER NAME");
         tableModel.addColumn("VALUE R$");
         tableModel.addColumn("DATE OF PURCHASE");

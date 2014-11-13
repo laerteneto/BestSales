@@ -43,7 +43,7 @@ public class ReportViewOverall extends JInternalFrame {
         labelTitle.setLocation(10, 5);
         labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
 
-        labelSumOverall = new JLabel("FINANCE - TOTAL $ :");
+        labelSumOverall = new JLabel("REVENUE - TOTAL $ :");
         labelSumOverall.setSize(210, 30);
         labelSumOverall.setLocation(10, 50);
 
@@ -100,7 +100,7 @@ public class ReportViewOverall extends JInternalFrame {
         buttomSearch.setSize(120, 20);
         buttomSearch.setLocation(750, 70);
 
-        buttomSum = new JButton("SELECTED SOMAR");
+        buttomSum = new JButton("SELECTED ORDER TOTAL");
         buttomSum.setSize(200, 30);
         buttomSum.setLocation(10, 630);
 
@@ -148,7 +148,7 @@ public class ReportViewOverall extends JInternalFrame {
 
         /*Verifying database erros*/
         if (reportFiltered.errorFilter) {
-            JOptionPane.showMessageDialog(null, "VERIFY THE DATAS!", null, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "VERIFY THE DATA!", null, JOptionPane.WARNING_MESSAGE);
             return;
         }
 

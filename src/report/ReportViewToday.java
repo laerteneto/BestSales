@@ -38,7 +38,7 @@ public class ReportViewToday extends JInternalFrame {
         labelTitle.setLocation(10, 5);
         labelTitle.setFont(new Font("Verdana", Font.BOLD, 20));
 
-        labelSumToday = new JLabel("TODAY'S BALANCE $ :");
+        labelSumToday = new JLabel("TODAY'S REVENUE $ :");
         labelSumToday.setSize(210, 30);
         labelSumToday.setLocation(10, 50);
 
@@ -87,7 +87,7 @@ public class ReportViewToday extends JInternalFrame {
         scrollTabelaCliente.setLocation(10, 110);
 
 
-        buttomSave = new JButton("SELECTED SOMAR");
+        buttomSave = new JButton("SELECTED ORDER TOTAL");
         buttomSave.setSize(200, 30);
         buttomSave.setLocation(10, 630);
 
