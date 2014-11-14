@@ -343,7 +343,7 @@ public class OrderView extends JInternalFrame {
                         customer.CustomerDao customer = new CustomerDao();
 
                         if (comboCustomers.getSelectedItem() == "") {
-                            JOptionPane.showMessageDialog(null, "CUSTOMER MUST BE COMPLETED!", "ATTENTION", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "CUSTOMER MUST BE FILLED!", "ATTENTION", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
 
