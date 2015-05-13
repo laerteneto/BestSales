@@ -22,6 +22,7 @@ public class CustomerEdit extends JDialog {
     private JButton buttomCancel, buttomSave;
     private CustomerView view;
 
+    
     CustomerEdit(CustomerView view, Integer id, String name, String ssn, String phone, String end, String date) {
         mainPainel = new JPanel(null);
         this.view = view;
